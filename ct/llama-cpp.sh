@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 source <(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/build.func)
 
-STD="&>/dev/null"
-
 function header_info {
 clear
 cat <<"EOF"
@@ -52,25 +50,25 @@ function default_settings() {
 
 function install_dependencies() {
   msg_info "Installing Dependencies"
-  $STD apt-get update
-  $STD apt-get install -y build-essential cmake python3 python3-pip git
+  apt-get update &>/dev/null
+  apt-get install -y build-essential cmake python3 python3-pip git &>/dev/null
   msg_ok "Installed Dependencies"
 }
 
 function clone_llama_cpp() {
   msg_info "Cloning llama.cpp Repository"
   cd /opt
-  $STD git clone https://github.com/ggerganov/llama.cpp.git
+  git clone https://github.com/ggerganov/llama.cpp.git &>/dev/null
   cd llama.cpp
   msg_ok "Cloned llama.cpp Repository"
 }
 
 function build_llama_cpp() {
   msg_info "Building llama.cpp"
-  $STD mkdir build
+  mkdir build
   cd build
-  $STD cmake ..
-  $STD make
+  cmake .. &>/dev/null
+  make &>/dev/null
   msg_ok "Built llama.cpp"
 }
 
