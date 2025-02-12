@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source <(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/build.func)
 
+STD="&>/dev/null"
+
 function header_info {
 clear
 cat <<"EOF"
